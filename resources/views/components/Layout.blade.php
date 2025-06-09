@@ -19,7 +19,8 @@
 </head>
 
 <body class="dark:bg-gray-900">
-    <nav id="navbar-landing" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700 transition-transform duration-500 ease-in-out">
+    <nav id="navbar-landing"
+        class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700 transition-transform duration-500 ease-in-out">
 
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -27,8 +28,11 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AspirasiKita</span>
             </a>
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                <a href="/login"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Login
+                </a>
+
 
                 {{-- Tombol Theme Toggle --}}
                 <button id="theme-toggle" type="button"
@@ -62,25 +66,41 @@
                 <ul
                     class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
-                        <a href="/"
-                            class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500"
-                            aria-current="page">Beranda</a>
+                        <a href="{{ url('/') }}"
+                            class="block py-2 px-3 md:p-0 rounded 
+                            {{ request()->is('/') ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' }}"
+                            aria-current="{{ request()->is('/') ? 'page' : '' }}">
+                            Beranda
+                        </a>
                     </li>
+
                     <li>
-                        <a href="/lapor"
-                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Lapor Saran
-                            Keluhan</a>
+                        <a href="{{ url('/lapor') }}"
+                            class="block py-2 px-3 md:p-0 rounded 
+                            {{ request()->is('lapor') ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' }}"
+                            aria-current="{{ request()->is('lapor') ? 'page' : '' }}">
+                            Lapor Saran Keluhan
+                        </a>
                     </li>
+
                     <li>
-                        <a href="#"
-                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Lihat Laporan</a>
+                        <a href="{{ url('/ceklapor') }}"
+                            class="block py-2 px-3 md:p-0 rounded 
+                            {{ request()->is('ceklapor') ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' }}"
+                            aria-current="{{ request()->is('ceklapor') ? 'page' : '' }}">
+                            Lihat Laporan
+                        </a>
                     </li>
-                    
+
                     <li>
-                        <a href="#"
-                            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Kontak
-                            Kami</a>
+                        <a href="{{ url('/kontak') }}"
+                            class="block py-2 px-3 md:p-0 rounded 
+                            {{ request()->is('kontak') ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' }}"
+                            aria-current="{{ request()->is('kontak') ? 'page' : '' }}">
+                            Kontak Kami
+                        </a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -99,7 +119,7 @@
                         <span
                             class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AspirasiKita</span>
                     </a>
-                <p class="dark:text-white text-sm pt-2">Indonesia, Kepulauan Riau, Kota Batam, Kelurahan Mawar</p>
+                    <p class="dark:text-white text-sm pt-2">Indonesia, Kepulauan Riau, Kota Batam, Kelurahan Mawar</p>
 
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -196,19 +216,19 @@
     <script>
         const navbar = document.getElementById('navbar-landing');
         let lastScrollY = window.scrollY;
-      
+
         window.addEventListener('scroll', () => {
-          if (window.scrollY > lastScrollY) {
-            // Scroll ke bawah: sembunyikan navbar
-            navbar.style.transform = 'translateY(-100%)';
-          } else {
-            // Scroll ke atas: tampilkan navbar
-            navbar.style.transform = 'translateY(0)';
-          }
-          lastScrollY = window.scrollY;
+            if (window.scrollY > lastScrollY) {
+                // Scroll ke bawah: sembunyikan navbar
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scroll ke atas: tampilkan navbar
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScrollY = window.scrollY;
         });
-      </script>
-      
+    </script>
+
 </body>
 
 </html>
