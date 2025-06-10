@@ -11,9 +11,9 @@
                     <div class="mb-6 text-sm text-green-600 dark:text-green-400">{{ session('success') }}</div>
                 @endif
 
-                <form action="" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form action="/report" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
-
+                    @method('POST')
                     <!-- Name (Optional) -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -29,10 +29,10 @@
 
                     <!-- Contact Number (Optional) -->
                     <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <label for="phone_no" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Nomor Kontak (Opsional)
                         </label>
-                        <input type="tel" name="phone" id="phone"
+                        <input type="tel" name="phone_no" id="phone_no"
                                class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm text-gray-900 dark:text-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                placeholder="Contoh: 081234567890" />
                         @error('phone')
@@ -68,10 +68,10 @@
 
                     <!-- Photo/File Upload -->
                     <div>
-                        <label for="file" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <label for="files" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Foto/File (Opsional)
                         </label>
-                        <input type="file" name="file" id="file"
+                        <input type="file" name="files" id="files"
                                class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-blue-400 dark:hover:file:bg-gray-600"
                                accept="image/*,.pdf" />
                         <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">

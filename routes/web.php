@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,15 +9,15 @@ Route::get('/', function () {
 Route::get('/lapor', function () {
     return view('pages.lapor');
 });
-Route::get('/ceklapor', function () {
-    return view('pages.ceklaporan');
-});
+Route::get('/ceklapor', [ReportController::class, 'page']);
 Route::get('/kontak', function () {
     return view('pages.kontak');
 });
 Route::get('/login', function () {
     return view('pages.login');
 });
+
+Route::post('/report', [ReportController::class, 'store']);
 
 //AUTH 
 

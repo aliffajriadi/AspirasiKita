@@ -1,3 +1,5 @@
+{{-- @dd($reports) --}}
+
 <x-Layout>
     <!-- Track Report Section -->
     <section class="bg-white dark:bg-gray-900 py-36">
