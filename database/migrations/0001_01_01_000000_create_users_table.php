@@ -15,6 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('nama_kelurahan');
+            $table->string('nama_kecamatan');
+            $table->string('nama_kota');
+            $table->string('nama_provinsi');
+            $table->text('alamat_kantor');
+            $table->integer('total_populasi');
+            $table->float('luas_area');
+            $table->integer('jumlah_rw');
+            $table->integer('jumlah_rt');
+            $table->string('kode_pos');
+            $table->string('no_telp');
+            $table->string('website')->nullable();
+            $table->text('profile_pic')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\FileReport;
+use Illuminate\Foundation\Exceptions\ReportableHandler;
 
 class ReportController extends Controller
 {
@@ -16,6 +17,15 @@ class ReportController extends Controller
             'reports' => $reports
         ]);
 
+    }
+
+    public function laporan_page()
+    {
+        $reports = Report::with('file')->get();
+
+        return view('pages.auth.laporan', [
+            'reports'=> $reports
+        ]);
     }
 
     public function store(Request $request)

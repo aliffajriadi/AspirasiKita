@@ -7,6 +7,7 @@
                 <p class="text-gray-600 dark:text-gray-400">Kelola laporan masyarakat dengan mudah</p>
             </div>
 
+            
             <!-- Statistics Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <!-- Total Laporan -->
@@ -19,7 +20,7 @@
                             </svg>
                         </div>
                         <div class="ml-5">
-                            <p class="text-3xl font-bold text-gray-900 dark:text-white">245</p>
+                            <p class="text-3xl font-bold text-gray-900 dark:text-white">{{ $fr_count + $ufr_count }}</p>
                             <p class="text-gray-600 dark:text-gray-400 font-medium">Total Laporan</p>
                             <p class="text-sm text-gray-500 dark:text-gray-500">Sejak awal tahun</p>
                         </div>
@@ -35,7 +36,7 @@
                             </svg>
                         </div>
                         <div class="ml-5">
-                            <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">47</p>
+                            <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">{{ $ufr_count }}</p>
                             <p class="text-gray-600 dark:text-gray-400 font-medium">Belum Diselesaikan</p>
                             <p class="text-sm text-gray-500 dark:text-gray-500">Memerlukan tindakan</p>
                         </div>
@@ -51,7 +52,7 @@
                             </svg>
                         </div>
                         <div class="ml-5">
-                            <p class="text-3xl font-bold text-green-600 dark:text-green-400">198</p>
+                            <p class="text-3xl font-bold text-green-600 dark:text-green-400">{{ $fr_count }}</p>
                             <p class="text-gray-600 dark:text-gray-400 font-medium">Sudah Diselesaikan</p>
                             <p class="text-sm text-gray-500 dark:text-gray-500">Berhasil ditangani</p>
                         </div>
@@ -65,20 +66,22 @@
                     <div class="mb-4">
                         <img class="w-20 h-20 rounded-full mx-auto border-4 border-blue-500" src="https://via.placeholder.com/80x80/3B82F6/FFFFFF?text=LOGO" alt="Logo Kelurahan">
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Kelurahan Sungai Panas</h2>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Kecamatan Batam Kota, Kota Batam, Kepulauan Riau</p>
+                
+
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $user->nama_kelurahan }}</h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">{{ $user->nama_kecamatan }}, {{ $user->nama_kota }}, {{ $user->nama_provinsi }}</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                             <p class="font-semibold text-gray-900 dark:text-white">Jumlah Penduduk</p>
-                            <p class="text-gray-600 dark:text-gray-400">15,234 Jiwa</p>
+                            <p class="text-gray-600 dark:text-gray-400">{{ $user->total_populasi }} Jiwa</p>
                         </div>
                         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                             <p class="font-semibold text-gray-900 dark:text-white">Luas Wilayah</p>
-                            <p class="text-gray-600 dark:text-gray-400">12.5 km²</p>
+                            <p class="text-gray-600 dark:text-gray-400">{{ $user->luas_area }} km²</p>
                         </div>
                         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                             <p class="font-semibold text-gray-900 dark:text-white">Jumlah RW/RT</p>
-                            <p class="text-gray-600 dark:text-gray-400">8 RW / 45 RT</p>
+                            <p class="text-gray-600 dark:text-gray-400">{{ $user->jumlah_rw }} RW / {{ $user->jumlah_rt }} RT</p>
                         </div>
                     </div>
                 </div>
@@ -93,7 +96,7 @@
                             <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Daftar laporan yang memerlukan tindakan segera</p>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="bg-orange-100 text-orange-800 text-xs font-medium px-3 py-1 rounded-full dark:bg-orange-900 dark:text-orange-300">47 Laporan</span>
+                            <span class="bg-orange-100 text-orange-800 text-xs font-medium px-3 py-1 rounded-full dark:bg-orange-900 dark:text-orange-300">{{ $ufr_count }} Laporan</span>
                             <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium bg-blue-50 dark:bg-blue-900 px-3 py-1 rounded-lg transition-colors">
                                 Lihat Semua
                             </button>
@@ -111,21 +114,23 @@
                                 <th scope="col" class="px-6 py-4">Judul Laporan</th>
                                 <th scope="col" class="px-6 py-4">Lokasi</th>
                                 <th scope="col" class="px-6 py-4">Tanggal</th>
-                                <th scope="col" class="px-6 py-4">Prioritas</th>
                                 <th scope="col" class="px-6 py-4">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+
+                            @foreach ($unfinished_reports as $report)
+                            
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#LPR-001</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $report->code }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center">
                                         <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
                                             AS
                                         </div>
                                         <div>
-                                            <p class="font-medium text-gray-900 dark:text-white">Ahmad Sari</p>
-                                            <p class="text-xs text-gray-500">0812-3456-789</p>
+                                            <p class="font-medium text-gray-900 dark:text-white">{{ $report->name === null ? 'anonymous' : $report->name }}</p>
+                                            <p class="text-xs text-gray-500">{{ $report->phone_no === null ? 'anonymous' : $report->phone_no }}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -133,17 +138,15 @@
                                     <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Infrastruktur</span>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <p class="font-medium text-gray-900 dark:text-white">Jalan Rusak Parah</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Jalan berlubang besar di depan...</p>
+                                    <p class="font-medium text-gray-900 dark:text-white">{{ $report->title }}</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ $report->description }}</p>
                                 </td>
-                                <td class="px-6 py-4">Jl. Merdeka No. 15</td>
+                                <td class="px-6 py-4">{{ $report->location === null ? '-' : $report->location }}</td>
                                 <td class="px-6 py-4">
-                                    <p class="text-gray-900 dark:text-white">08 Jun 2025</p>
+                                    <p class="text-gray-900 dark:text-white">{{ $report->created_at }}</p>
                                     <p class="text-xs text-gray-500">14:30 WIB</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Tinggi</span>
-                                </td>
+                
                                 <td class="px-6 py-4">
                                     <div class="flex items-center space-x-2">
                                         <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
@@ -152,113 +155,10 @@
                                 </td>
                             </tr>
 
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#LPR-002</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
-                                            SI
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-gray-900 dark:text-white">Siti Indah</p>
-                                            <p class="text-xs text-gray-500">0813-5678-901</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Lingkungan</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium text-gray-900 dark:text-white">Sampah Menumpuk</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Sampah di TPS tidak diangkut...</p>
-                                </td>
-                                <td class="px-6 py-4">TPS Blok A</td>
-                                <td class="px-6 py-4">
-                                    <p class="text-gray-900 dark:text-white">07 Jun 2025</p>
-                                    <p class="text-xs text-gray-500">09:15 WIB</p>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Sedang</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center space-x-2">
-                                        <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
-                                        <button type="button" class="text-green-600 hover:text-green-800 dark:text-green-400 text-xs bg-green-50 dark:bg-green-900 px-2 py-1 rounded">Proses</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
+                            
 
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#LPR-003</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
-                                            BP
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-gray-900 dark:text-white">Budi Pratama</p>
-                                            <p class="text-xs text-gray-500">0814-7890-123</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">Keamanan</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium text-gray-900 dark:text-white">Lampu Jalan Mati</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Lampu penerangan jalan sudah...</p>
-                                </td>
-                                <td class="px-6 py-4">Jl. Raya Km 8</td>
-                                <td class="px-6 py-4">
-                                    <p class="text-gray-900 dark:text-white">06 Jun 2025</p>
-                                    <p class="text-xs text-gray-500">20:45 WIB</p>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Tinggi</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center space-x-2">
-                                        <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
-                                        <button type="button" class="text-green-600 hover:text-green-800 dark:text-green-400 text-xs bg-green-50 dark:bg-green-900 px-2 py-1 rounded">Proses</button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#LPR-004</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
-                                            RH
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-gray-900 dark:text-white">Rina Hartini</p>
-                                            <p class="text-xs text-gray-500">0815-4567-890</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-cyan-900 dark:text-cyan-300">Fasilitas</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium text-gray-900 dark:text-white">Saluran Air Tersumbat</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Saluran air hujan penuh sampah...</p>
-                                </td>
-                                <td class="px-6 py-4">Komplek Perumahan</td>
-                                <td class="px-6 py-4">
-                                    <p class="text-gray-900 dark:text-white">05 Jun 2025</p>
-                                    <p class="text-xs text-gray-500">16:20 WIB</p>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Sedang</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center space-x-2">
-                                        <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
-                                        <button type="button" class="text-green-600 hover:text-green-800 dark:text-green-400 text-xs bg-green-50 dark:bg-green-900 px-2 py-1 rounded">Proses</button>
-                                    </div>
-                                </td>
-                            </tr>
+                        
                         </tbody>
                     </table>
                 </div>
@@ -266,15 +166,16 @@
                 <!-- Table Footer -->
                 <div class="p-4 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                            <span>Menampilkan 1-4 dari 47 laporan</span>
-                        </div>
+              
+
+                        {{ $unfinished_reports->links() }}
+{{-- 
                         <div class="flex items-center space-x-2">
                             <button class="px-3 py-1 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600">Previous</button>
                             <button class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">1</button>
                             <button class="px-3 py-1 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600">2</button>
                             <button class="px-3 py-1 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600">Next</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

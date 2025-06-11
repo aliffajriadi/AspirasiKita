@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+use function PHPSTORM_META\map;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +18,22 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::create([
+            'name' => 'admin',
+            'email' => 'sungaipanas@gmail.com',
+            'password' => Hash::make('password'),
+            'nama_kelurahan' => 'Kelurahan Sungai Panas',
+            'nama_kecamatan' => 'Kecamatan Batam Kota',
+            'nama_kota' => 'Kota Batam',
+            'nama_provinsi' => 'Kepulauan Riau',
+            'alamat_kantor' => 'Jl. Sungai Panas Raya No. 25, Batam Kota, Kota Batam, Kepulauan Riau 29444',
+            'total_populasi'=> '15234',
+            'luas_area' => 12.5,
+            'jumlah_rw' => 8,
+            'jumlah_rt' => 45,
+            'no_telp' => '0778-123456',
+
+
         ]);
     }
 }

@@ -48,28 +48,28 @@
                         <!-- Nama Kelurahan -->
                         <div>
                             <label for="nama_kelurahan" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nama Kelurahan</label>
-                            <input type="text" id="nama_kelurahan" name="nama_kelurahan" value="Kelurahan Sungai Panas" readonly
+                            <input type="text" id="nama_kelurahan" name="nama_kelurahan" value="{{ $user->nama_kelurahan }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
                         <!-- Kecamatan -->
                         <div>
                             <label for="kecamatan" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Kecamatan</label>
-                            <input type="text" id="kecamatan" name="kecamatan" value="Batam Kota" readonly
+                            <input type="text" id="kecamatan" name="{{ $user->nama_kecamatan }}" value="Batam Kota" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
                         <!-- Kota -->
                         <div>
                             <label for="kota" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Kota/Kabupaten</label>
-                            <input type="text" id="kota" name="kota" value="Kota Batam" readonly
+                            <input type="text" id="kota" name="kota" value="{{ $user->nama_kota }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
                         <!-- Provinsi -->
                         <div>
                             <label for="provinsi" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Provinsi</label>
-                            <input type="text" id="provinsi" name="provinsi" value="Kepulauan Riau" readonly
+                            <input type="text" id="provinsi" name="provinsi" value="{{ $user->nama_provinsi }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
@@ -78,14 +78,14 @@
                             <label for="alamat_kantor" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Alamat Kantor Kelurahan</label>
                             <textarea id="alamat_kantor" name="alamat_kantor" rows="3" readonly
                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                                      placeholder="Masukkan alamat lengkap kantor kelurahan">Jl. Sungai Panas Raya No. 25, Batam Kota, Kota Batam, Kepulauan Riau 29444</textarea>
+                                      placeholder="Masukkan alamat lengkap kantor kelurahan">{{ $user->alamat_kantor }}</textarea>
                         </div>
 
                         <!-- Jumlah Penduduk -->
                         <div>
                             <label for="jumlah_penduduk" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Jumlah Penduduk</label>
                             <div class="relative">
-                                <input type="number" id="jumlah_penduduk" name="jumlah_penduduk" value="15234" readonly
+                                <input type="number" id="jumlah_penduduk" name="jumlah_penduduk" value="{{ $user->total_populasi }}" readonly
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                 <span class="absolute right-4 top-3 text-gray-500 dark:text-gray-400 text-sm">Jiwa</span>
                             </div>
@@ -95,7 +95,7 @@
                         <div>
                             <label for="luas_wilayah" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Luas Wilayah</label>
                             <div class="relative">
-                                <input type="number" step="0.1" id="luas_wilayah" name="luas_wilayah" value="12.5" readonly
+                                <input type="number" step="0.1" id="luas_wilayah" name="luas_wilayah" value="{{ $user->luas_area }}" readonly
                                        class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                 <span class="absolute right-4 top-3 text-gray-500 dark:text-gray-400 text-sm">km²</span>
                             </div>
@@ -104,14 +104,14 @@
                         <!-- Jumlah RW -->
                         <div>
                             <label for="jumlah_rw" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Jumlah RW</label>
-                            <input type="number" id="jumlah_rw" name="jumlah_rw" value="8" readonly
+                            <input type="number" id="jumlah_rw" name="jumlah_rw" value="{{ $user->jumlah_rw }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
                         <!-- Jumlah RT -->
                         <div>
                             <label for="jumlah_rt" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Jumlah RT</label>
-                            <input type="number" id="jumlah_rt" name="jumlah_rt" value="45" readonly
+                            <input type="number" id="jumlah_rt" name="jumlah_rt" value="{{ $user->jumlah_rt }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
@@ -125,21 +125,21 @@
                         <!-- No Telepon -->
                         <div>
                             <label for="no_telepon" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">No. Telepon Kantor</label>
-                            <input type="tel" id="no_telepon" name="no_telepon" value="0778-123456" readonly
+                            <input type="tel" id="no_telepon" name="no_telepon" value="{{ $user->no_telp }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
                         <!-- Email -->
                         <div class="lg:col-span-2">
                             <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" value="sungaipanas@batam.go.id" readonly
+                            <input type="email" id="email" name="email" value="{{ $user->email }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         </div>
 
                         <!-- Website -->
                         <div class="lg:col-span-2">
                             <label for="website" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Website (Opsional)</label>
-                            <input type="url" id="website" name="website" value="https://sungaipanas.batam.go.id" readonly
+                            <input type="url" id="website" name="website" value="{{ $user->website }}" readonly
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                    placeholder="https://example.com">
                         </div>
@@ -151,7 +151,7 @@
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                             </svg>
-                            Terakhir diperbarui: 08 Jun 2025, 14:30 WIB
+                            Terakhir diperbarui: {{ $user->updated_at }}
                         </div>
                         <div class="flex items-center space-x-3">
                             <button type="button" disabled
@@ -192,15 +192,15 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                             <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="font-semibold text-gray-900 dark:text-white">Jumlah Penduduk</p>
-                                <p class="text-gray-600 dark:text-gray-400">15,234 Jiwa</p>
+                                <p class="text-gray-600 dark:text-gray-400">{{ $user->total_populasi }} Jiwa</p>
                             </div>
                             <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="font-semibold text-gray-900 dark:text-white">Luas Wilayah</p>
-                                <p class="text-gray-600 dark:text-gray-400">12.5 km²</p>
+                                <p class="text-gray-600 dark:text-gray-400">{{ $user->luas_area }} km²</p>
                             </div>
                             <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="font-semibold text-gray-900 dark:text-white">Jumlah RW/RT</p>
-                                <p class="text-gray-600 dark:text-gray-400">8 RW / 45 RT</p>
+                                <p class="text-gray-600 dark:text-gray-400">{{ $user->jumlah_rw }} RW / {{ $user->jumlah_rt }} RT</p>
                             </div>
                         </div>
                     </div>

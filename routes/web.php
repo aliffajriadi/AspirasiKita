@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,20 +14,14 @@ Route::get('/ceklapor', [ReportController::class, 'page']);
 Route::get('/kontak', function () {
     return view('pages.kontak');
 });
-Route::get('/login', function () {
-    return view('pages.login');
-});
+Route::get('/login', [UserController::class, 'login_page']);
+
+Route::post('/login', [UserController::class, 'login']);
 
 Route::post('/report', [ReportController::class, 'store']);
 
 //AUTH 
 
-Route::get('/dashboard', function () {
-    return view('pages.auth.dashboard');
-});
-Route::get('/konten', function () {
-    return view('pages.auth.konten');
-});
-Route::get('/laporan', function () {
-    return view('pages.auth.laporan');
-});
+Route::get('/dashboard', [UserController::class, 'dashboard']);
+Route::get('/konten', [UserController::class, 'konten_page']);
+Route::get('/laporan', [ReportController::class, 'laporan_page']);
