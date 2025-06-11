@@ -20,9 +20,9 @@ return new class extends Migration
             $table->text('location')->nullable();
             $table->text('comment')->nullable();
             $table->tinyInteger('status')->default(0);
-            // $table->foreignId('category_id')->constrained(
-            //     'categories',
-            //     'id');
+            $table->foreignId('category_id')->constrained(
+                'categories',
+                'id');
             $table->timestamps();
 
             $table->string('name')->nullable();
