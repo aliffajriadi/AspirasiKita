@@ -43,7 +43,7 @@ class UserController extends Controller
 
 
         return view('pages.auth.dashboard', [
-            'unfinished_reports' => Report::where('status', '=', 0)->paginate(1),
+            'unfinished_reports' => Report::where('status', '=', 0)->paginate(10),
             'ufr_count' => $ufr->count(),
             'fr_count' => $fr->count(),
             'user' => Auth::user()

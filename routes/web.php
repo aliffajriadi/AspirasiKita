@@ -13,6 +13,11 @@ Route::get('/ceklapor', [ReportController::class, 'page']);
 Route::get('/kontak', function () {
     return view('pages.kontak');
 });
+
+Route::get('/test', function () {
+    return view('pages.test');
+});
+
 Route::get('/login', [UserController::class, 'login_page']);
 
 Route::post('/login', [UserController::class, 'login']);

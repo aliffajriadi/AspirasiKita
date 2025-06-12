@@ -1,5 +1,64 @@
 <x-LayoutAuth title="Laporan" nama="Admin" email="admin@gmail.com">
-    
+    @php
+        // Dummy report data
+        $reports = [
+            [
+                'id' => 1,
+                'kode_laporan' => 'LAP-2025-001',
+                'kategori' => 'Infrastruktur',
+                'judul_laporan' => 'Jalan Berlubang di Jl. Mawar',
+                'isi_laporan' => 'Jalan berlubang di Jl. Mawar menyebabkan kecelakaan motor. Mohon perbaikan segera.',
+                'lokasi' => 'Jl. Mawar No. 10',
+                'tanggal' => '2025-06-01',
+                'status' => 'Baru',
+                'komentar' => '',
+            ],
+            [
+                'id' => 2,
+                'kode_laporan' => 'LAP-2025-002',
+                'kategori' => 'Kebersihan',
+                'judul_laporan' => 'Sampah Menumpuk di Pasar',
+                'isi_laporan' => 'Sampah menumpuk di area pasar Sungai Panas, menyebabkan bau tidak sedap.',
+                'lokasi' => 'Pasar Sungai Panas',
+                'tanggal' => '2025-06-02',
+                'status' => 'Pending',
+                'komentar' => 'Sedang dikoordinasikan dengan dinas kebersihan.',
+            ],
+            [
+                'id' => 3,
+                'kode_laporan' => 'LAP-2025-003',
+                'kategori' => 'Keamanan',
+                'judul_laporan' => 'Lampu Jalan Mati',
+                'isi_laporan' => 'Lampu jalan di Jl. Melati mati sejak seminggu lalu, rawan kejahatan.',
+                'lokasi' => 'Jl. Melati',
+                'tanggal' => '2025-06-03',
+                'status' => 'Done',
+                'komentar' => 'Lampu telah diperbaiki pada 2025-06-05.',
+            ],
+            [
+                'id' => 4,
+                'kode_laporan' => 'LAP-2025-004',
+                'kategori' => 'Infrastruktur',
+                'judul_laporan' => 'Saluran Air Tersumbat',
+                'isi_laporan' => 'Saluran air di Jl. Anggrek tersumbat, menyebabkan banjir saat hujan.',
+                'lokasi' => 'Jl. Anggrek No. 5',
+                'tanggal' => '2025-06-04',
+                'status' => 'Pending',
+                'komentar' => 'Menunggu alat berat untuk pembersihan.',
+            ],
+            [
+                'id' => 5,
+                'kode_laporan' => 'LAP-2025-005',
+                'kategori' => 'Pelayanan Publik',
+                'judul_laporan' => 'Antrian Panjang di Kantor Kelurahan',
+                'isi_laporan' => 'Antrian untuk pengurusan dokumen di kelurahan sangat panjang, butuh solusi.',
+                'lokasi' => 'Kantor Kelurahan Sungai Panas',
+                'tanggal' => '2025-06-05',
+                'status' => 'Baru',
+                'komentar' => '',
+            ],
+        ];
+    @endphp
 
     <div class="w-full">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -60,12 +119,12 @@
                             @foreach ($reports as $index => $report)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">{{ $index + 1 }}</td>
-                                    <td class="px-6 py-4">{{ $report['code'] }}</td>
-                                    <td class="px-6 py-4">{{ $report->category->name }}</td>
-                                    <td class="px-6 py-4">{{ $report['title'] }}</td>
-                                    <td class="px-6 py-4">{{ Str::limit($report['description'], 50) }}</td>
-                                    <td class="px-6 py-4">{{ $report['location'] }}</td>
-                                    <td class="px-6 py-4">{{ \Carbon\Carbon::parse($report['created_at'])->format('d M Y') }}</td>
+                                    <td class="px-6 py-4">{{ $report['kode_laporan'] }}</td>
+                                    <td class="px-6 py-4">{{ $report['kategori'] }}</td>
+                                    <td class="px-6 py-4">{{ $report['judul_laporan'] }}</td>
+                                    <td class="px-6 py-4">{{ Str::limit($report['isi_laporan'], 50) }}</td>
+                                    <td class="px-6 py-4">{{ $report['lokasi'] }}</td>
+                                    <td class="px-6 py-4">{{ \Carbon\Carbon::parse($report['tanggal'])->format('d M Y') }}</td>
                                     <td class="px-6 py-4">
                                         <span class="px-2 py-1 text-xs font-medium rounded-full
                                             {{ ($report['status'] == 'Baru' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' : 
@@ -164,7 +223,7 @@
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Kategori</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report->category->name }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['kategori'] }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Judul Laporan</dt>

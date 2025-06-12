@@ -66,6 +66,18 @@
 
                     </div>
 
+                    <div>
+                        <label for="location" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Lokasi perkara (opsional)
+                        </label>
+                        <textarea name="location" id="location" rows="5" required
+                                  class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm text-gray-900 dark:text-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                  placeholder="Detail tempat lokasi perkara"></textarea>
+                        @error('location')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- Complaint Description -->
                     <div>
                         <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -85,8 +97,7 @@
                             Foto/File (Opsional)
                         </label>
                         <input type="file" name="files" id="files"
-                               class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-blue-400 dark:hover:file:bg-gray-600"
-                               accept="image/*,.pdf" />
+                               class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-blue-400 dark:hover:file:bg-gray-600"/>
                         <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
                             Unggah file gambar (JPG, PNG, SVG, GIF) atau PDF (maks. 2MB)
                         </p>

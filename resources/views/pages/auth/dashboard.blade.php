@@ -157,6 +157,117 @@
 
                             @endforeach
                             
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#LPR-002</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
+                                            SI
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900 dark:text-white">Siti Indah</p>
+                                            <p class="text-xs text-gray-500">0813-5678-901</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Lingkungan</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <p class="font-medium text-gray-900 dark:text-white">Sampah Menumpuk</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Sampah di TPS tidak diangkut...</p>
+                                </td>
+                                <td class="px-6 py-4">TPS Blok A</td>
+                                <td class="px-6 py-4">
+                                    <p class="text-gray-900 dark:text-white">07 Jun 2025</p>
+                                    <p class="text-xs text-gray-500">09:15 WIB</p>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Sedang</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-2">
+                                        <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
+                                        <button type="button" class="text-green-600 hover:text-green-800 dark:text-green-400 text-xs bg-green-50 dark:bg-green-900 px-2 py-1 rounded">Proses</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#LPR-003</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
+                                            BP
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900 dark:text-white">Budi Pratama</p>
+                                            <p class="text-xs text-gray-500">0814-7890-123</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">Keamanan</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Lingkungan</span>
+                                    <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-cyan-900 dark:text-cyan-300">Fasilitas</span>
+                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Infrastruktur</span>
+                                    
+                                </td>
+                                <td class="px-6 py-4">
+                                    <p class="font-medium text-gray-900 dark:text-white">Lampu Jalan Mati</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Lampu penerangan jalan sudah...</p>
+                                </td>
+                                <td class="px-6 py-4">Jl. Raya Km 8</td>
+                                <td class="px-6 py-4">
+                                    <p class="text-gray-900 dark:text-white">06 Jun 2025</p>
+                                    <p class="text-xs text-gray-500">20:45 WIB</p>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Tinggi</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-2">
+                                        <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
+                                        <button type="button" class="text-green-600 hover:text-green-800 dark:text-green-400 text-xs bg-green-50 dark:bg-green-900 px-2 py-1 rounded">Proses</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#LPR-004</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
+                                            RH
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900 dark:text-white">Rina Hartini</p>
+                                            <p class="text-xs text-gray-500">0815-4567-890</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-cyan-900 dark:text-cyan-300">Fasilitas</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <p class="font-medium text-gray-900 dark:text-white">Saluran Air Tersumbat</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Saluran air hujan penuh sampah...</p>
+                                </td>
+                                <td class="px-6 py-4">Komplek Perumahan</td>
+                                <td class="px-6 py-4">
+                                    <p class="text-gray-900 dark:text-white">05 Jun 2025</p>
+                                    <p class="text-xs text-gray-500">16:20 WIB</p>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Sedang</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-2">
+                                        <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
+                                        <button type="button" class="text-green-600 hover:text-green-800 dark:text-green-400 text-xs bg-green-50 dark:bg-green-900 px-2 py-1 rounded">Proses</button>
+                                    </div>
+                                </td>
+                            </tr>
 
                         
                         </tbody>
