@@ -38,8 +38,8 @@ class UserController extends Controller
     {
         $reports = Report::query();
 
-        $fr = Report::where('status', '!=', 0);
-        $ufr = Report::where('status', '=', 0);
+        $fr = Report::where('status', '=', 2);
+        $ufr = Report::where('status', '!=', 2);
 
 
         return view('pages.auth.dashboard', [

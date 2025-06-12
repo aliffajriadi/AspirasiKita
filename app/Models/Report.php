@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     protected $fillable = [
-        'code', 'title', 'description', 'name',  'phone_no', 'category_id', 'location'
+        'code', 'title', 'description', 'name',  'phone_no', 'category_id', 'location', 'status', 'comment'
     ];
 
     public function file()

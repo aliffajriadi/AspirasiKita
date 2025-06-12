@@ -52,7 +52,7 @@ class ReportController extends Controller
             $field['code'] = 'Lap-' . now();
             
             $report = Report::create($field);
-            dd($report);
+            // dd($report);
 
             // dd($report);
 
@@ -76,8 +76,9 @@ class ReportController extends Controller
 
             // dd($aa);
 
-        // return redirect('/ceklapor');
+        return redirect('/ceklapor');
 
+        // kalau mau nanti ditambahkan untuk mendownload filenya agar dia tau kode laporan dan detaillaporan yang dia masukkan
     
         }catch(\Exception $e){
             return response()->json([
@@ -91,14 +92,22 @@ class ReportController extends Controller
     public function update(Request $request, Report $report)
     {
         try{
+            // dd($request->all());
+
             $field = $request->validate([
                 'comment' => 'required|string',
-                'status' => 'required'
+                'status' => 'required|integer'
             ]);
 
-            $report->update($field);
+            // $report->comment = $field['comment'];
+            // $report->status = $field['status'];
 
-            dd($report);
+            $report->update($field);
+            // $report->save();
+
+            return redirect()->back();
+
+            dd($report, $request->all());
 
         }catch(\Exception $e){
 

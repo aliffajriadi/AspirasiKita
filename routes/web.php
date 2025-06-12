@@ -29,3 +29,4 @@ Route::post('/report', [ReportController::class, 'store']);
 Route::get('/dashboard', [UserController::class, 'dashboard']);
 Route::get('/konten', [UserController::class, 'konten_page']);
 Route::get('/laporan', [ReportController::class, 'laporan_page']);
+Route::patch('/laporan/{report}', [ReportController::class, 'update']);

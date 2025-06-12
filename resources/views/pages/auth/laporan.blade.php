@@ -110,21 +110,21 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form action="" method="POST" class="p-4 md:p-5">
+                            <form action="/laporan/{{ $report->id }}" method="POST" class="p-4 md:p-5">
                                 @csrf
-                                @method('PUT')
+                                @method('PATCH')
                                 <div class="grid gap-4 mb-4">
                                     <div>
                                         <label for="status-{{ $report['id'] }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                                         <select id="status-{{ $report['id'] }}" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                                            <option value="Baru" {{ $report['status'] == 'Baru' ? 'selected' : '' }}>Baru</option>
-                                            <option value="Pending" {{ $report['status'] == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                            <option value="Done" {{ $report['status'] == 'Done' ? 'selected' : '' }}>Done</option>
+                                            <option value="0" {{ $report['status'] == 0 ? 'selected' : '' }}>Baru</option>
+                                            <option value="1" {{ $report['status'] == 1 ? 'selected' : '' }}>Pending</option>
+                                            <option value="2" {{ $report['status'] == 2 ? 'selected' : '' }}>Done</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label for="komentar-{{ $report['id'] }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Komentar</label>
-                                        <textarea id="komentar-{{ $report['id'] }}" name="komentar" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Tambahkan komentar...">{{ $report['komentar'] }}</textarea>
+                                        <textarea id="komentar-{{ $report['id'] }}" name="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Tambahkan komentar...">{{ $report['komentar'] }}</textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -168,19 +168,19 @@
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Judul Laporan</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['judul_laporan'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['title'] }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Isi Laporan</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['isi_laporan'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['description'] }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Lokasi</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['lokasi'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['location'] }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ \Carbon\Carbon::parse($report['tanggal'])->format('d M Y') }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ \Carbon\Carbon::parse($report['created_at'])->format('d M Y') }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Status</dt>
@@ -188,7 +188,7 @@
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Komentar</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['komentar'] ?: 'Belum ada komentar' }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['comment'] ?? 'Belum ada komentar' }}</dd>
                                     </div>
                                 </dl>
                             </div>

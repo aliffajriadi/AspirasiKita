@@ -37,11 +37,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::insert([
-            ['name' => 'Infrastruktur'],
-            ['name' => 'Tawuran'],
-            ['name' => 'Aduh'],
-            ['name' => 'Cihuy'],
-            ['name' => 'Lainnya'],
+            ['name' => 'Infrastruktur', 'color' => 'red'],
+            ['name' => 'Lingkungan', 'color' => 'blue'],
+            ['name' => 'Keamanan', 'color' => 'orange'],
+            ['name' => 'Fasilitas', 'color' => 'cyan']
         ]);
     }
 }
