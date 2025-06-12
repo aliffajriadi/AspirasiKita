@@ -188,7 +188,7 @@
                         <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Kelurahan Sungai Panas</h4>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">
                             Kecamatan Batam Kota, Kota Batam, Kepulauan Riau
-                        </p>
+                        </p>spo
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                             <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="font-semibold text-gray-900 dark:text-white">Jumlah Penduduk</p>
