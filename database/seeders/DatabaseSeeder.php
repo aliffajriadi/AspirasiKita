@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -32,8 +33,15 @@ class DatabaseSeeder extends Seeder
             'jumlah_rw' => 8,
             'jumlah_rt' => 45,
             'no_telp' => '0778-123456',
+            'kode_pos' => 29444
+        ]);
 
-
+        Category::insert([
+            ['name' => 'Infrastruktur'],
+            ['name' => 'Tawuran'],
+            ['name' => 'Aduh'],
+            ['name' => 'Cihuy'],
+            ['name' => 'Lainnya'],
         ]);
     }
 }

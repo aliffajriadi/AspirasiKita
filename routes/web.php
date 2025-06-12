@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -7,9 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/lapor', function () {
-    return view('pages.lapor');
-});
+Route::get('/lapor', [PublicController::class, 'lapor_page']);
 Route::get('/ceklapor', [ReportController::class, 'page']);
 Route::get('/kontak', function () {
     return view('pages.kontak');

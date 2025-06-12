@@ -30,14 +30,17 @@ class ReportController extends Controller
 
     public function store(Request $request)
     {
+
         $field = $request->validate([
             'name' => 'string',
             'phone_no' => 'string',
             'title' => 'required|string',
             'description' => 'required|string',
             'files' => 'array',
-            'files.*' => 'file'
+            'files.*' => 'file',
+            'category_id' => 'required'
         ]);
+
 
         $field['code'] = 'Lap-' . now();
 
