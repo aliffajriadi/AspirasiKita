@@ -130,7 +130,7 @@ class ReportController extends Controller
             $report->update($field);
             // $report->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Berhasil Update.');
 
             dd($report, $request->all());
         } catch (\Exception $e) {

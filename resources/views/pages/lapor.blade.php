@@ -1,6 +1,6 @@
 <x-Layout :alamat="$profile->alamat_kantor">
     <!-- Report Form Section -->
-    <section class="bg-white dark:bg-gray-900 py-16">
+    <section class="bg-white dark:bg-gray-900 py-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white text-center mb-10 sm:text-4xl">
                 Lapor Keluhan dan Saran
