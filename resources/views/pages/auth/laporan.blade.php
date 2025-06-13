@@ -1,5 +1,11 @@
 <x-LayoutAuth title="Laporan" nama="Admin" email="admin@gmail.com">
     
+    @php
+        $status = [
+            'baru', 'pending', 'done'
+        ]
+
+    @endphp
 
     <div class="w-full">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -57,6 +63,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($reports as $index => $report)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">{{ $index + 1 }}</td>
@@ -68,10 +75,8 @@
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($report['created_at'])->format('d M Y') }}</td>
                                     <td class="px-6 py-4">
                                         <span class="px-2 py-1 text-xs font-medium rounded-full
-                                            {{ ($report['status'] == 'Baru' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' : 
-                                                ($report['status'] == 'Pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' : 
-                                                 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300')) }}">
-                                            {{ $report['status'] }}
+                                            {{ ($report['status'] == 1 ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' : ($report['status'] == 0 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300')) }}">
+                                            {{ $status[$report['status']] }}
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 flex space-x-2">

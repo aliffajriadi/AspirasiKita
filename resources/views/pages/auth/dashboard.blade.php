@@ -97,6 +97,11 @@
                         </div>
                         <div class="flex items-center space-x-3">
                             <span class="bg-orange-100 text-orange-800 text-xs font-medium px-3 py-1 rounded-full dark:bg-orange-900 dark:text-orange-300">{{ $ufr_count }} Laporan</span>
+
+                            <a href="/laporan" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium bg-blue-50 dark:bg-blue-900 px-3 py-1 rounded-lg transition-colors">
+                                Lihat Semua
+                            </a>
+
                             <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium bg-blue-50 dark:bg-blue-900 px-3 py-1 rounded-lg transition-colors">
                                 Lihat Semua
                             </button>

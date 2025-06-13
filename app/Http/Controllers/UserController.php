@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -55,5 +56,27 @@ class UserController extends Controller
         return view('pages.auth.konten', [
             'user' => Auth::user()
         ]);
+    }
+
+    public function change_password(Request $request)
+    {
+        $user = Auth::user();
+
+        $field = $request->validate([
+            'old_password' => 'required|string',
+            'password' => 'required|string|confirmed',
+        ]);
+
+        if(!Hash::check($field['old_password'], $user->password)){
+            return response()->json([
+                'message' => 'gagal mengubah password, password lama salah'
+            ]);
+        }
+
+        $user->password = Hash::make($field['password']);
+    
+        $user->save();
+
+        return redirect()->back();
     }
 }
