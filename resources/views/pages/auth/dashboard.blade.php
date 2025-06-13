@@ -1,4 +1,4 @@
-<x-LayoutAuth title="Dashboard" nama="Admin" email="admin@gmail.com">
+<x-LayoutAuth title="Dashboard" :nama="$user->nama_kelurahan" :email="$user->email" :foto="$user->profile_pic">
     <div class="w-full">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
             <!-- Welcome Header -->
@@ -36,7 +36,7 @@
                             </svg>
                         </div>
                         <div class="ml-5">
-                            <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">{{ $ufr_count }}</p>
+                            <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">{{ $fr_count }}</p>
                             <p class="text-gray-600 dark:text-gray-400 font-medium">Belum Diselesaikan</p>
                             <p class="text-sm text-gray-500 dark:text-gray-500">Memerlukan tindakan</p>
                         </div>
@@ -52,7 +52,7 @@
                             </svg>
                         </div>
                         <div class="ml-5">
-                            <p class="text-3xl font-bold text-green-600 dark:text-green-400">{{ $fr_count }}</p>
+                            <p class="text-3xl font-bold text-green-600 dark:text-green-400">{{ $ufr_count }}</p>
                             <p class="text-gray-600 dark:text-gray-400 font-medium">Sudah Diselesaikan</p>
                             <p class="text-sm text-gray-500 dark:text-gray-500">Berhasil ditangani</p>
                         </div>
@@ -64,7 +64,7 @@
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 mb-8">
                 <div class="text-center">
                     <div class="mb-4">
-                        <img class="w-20 h-20 rounded-full mx-auto border-4 border-blue-500" src="https://via.placeholder.com/80x80/3B82F6/FFFFFF?text=LOGO" alt="Logo Kelurahan">
+                        <img class="w-20 h-20 rounded-full mx-auto border-4 border-blue-500" src="{{ asset('storage/' . $user->profile_pic ) }}" alt="Logo Kelurahan">
                     </div>
                 
 
@@ -96,15 +96,13 @@
                             <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Daftar laporan yang memerlukan tindakan segera</p>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="bg-orange-100 text-orange-800 text-xs font-medium px-3 py-1 rounded-full dark:bg-orange-900 dark:text-orange-300">{{ $ufr_count }} Laporan</span>
+                            <span class="bg-orange-100 text-orange-800 text-xs font-medium px-3 py-1 rounded-full dark:bg-orange-900 dark:text-orange-300">{{ $fr_count }} Laporan</span>
 
                             <a href="/laporan" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium bg-blue-50 dark:bg-blue-900 px-3 py-1 rounded-lg transition-colors">
                                 Lihat Semua
                             </a>
 
-                            <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium bg-blue-50 dark:bg-blue-900 px-3 py-1 rounded-lg transition-colors">
-                                Lihat Semua
-                            </button>
+                           
                         </div>
                     </div>
                 </div>
@@ -119,7 +117,7 @@
                                 <th scope="col" class="px-6 py-4">Judul Laporan</th>
                                 <th scope="col" class="px-6 py-4">Lokasi</th>
                                 <th scope="col" class="px-6 py-4">Tanggal</th>
-                                <th scope="col" class="px-6 py-4">Aksi</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -131,7 +129,7 @@
                                 <td class="px-6 py-4">
                                     <div class="flex items-center">
                                         <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium mr-3">
-                                            AS
+                                            {{ Str::substr($report->name, 0, 1) }}
                                         </div>
                                         <div>
                                             <p class="font-medium text-gray-900 dark:text-white">{{ $report->name === null ? 'anonymous' : $report->name }}</p>
@@ -140,7 +138,7 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="bg-{{ $report->category->color }}-100 text-{{ $report->category->color }}-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-{{ $report->category->color }}-900 dark:text-{{ $report->category->color }}-300">Infrastruktur</span>
+                                    <span class="bg-{{ $report->category->color }}-100 text-{{ $report->category->color }}-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-{{ $report->category->color }}-900 dark:text-{{ $report->category->color }}-300">{{$report->category->name}}</span>
                                 </td>
                                 <td class="px-6 py-4">
                                     <p class="font-medium text-gray-900 dark:text-white">{{ $report->title }}</p>
@@ -152,12 +150,7 @@
                                     <p class="text-xs text-gray-500">14:30 WIB</p>
                                 </td>
                 
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center space-x-2">
-                                        <button type="button" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-xs bg-blue-50 dark:bg-blue-900 px-2 py-1 rounded">Detail</button>
-                                        <button type="button" class="text-green-600 hover:text-green-800 dark:text-green-400 text-xs bg-green-50 dark:bg-green-900 px-2 py-1 rounded">Proses</button>
-                                    </div>
-                                </td>
+                                
                             </tr>
 
                             @endforeach

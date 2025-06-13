@@ -1,4 +1,4 @@
-<x-Layout>
+<x-Layout :alamat="$profile->alamat_kantor">
     <!-- Contact Section -->
     <section class="bg-white dark:bg-gray-900 py-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,7 +8,7 @@
             <div class="max-w-2xl mx-auto">
                 <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">
-                        Kontak Kelurahan Mawar
+                        Kontak {{ $profile->nama_kelurahan }}
                     </h3>
                     <div class="space-y-6">
                         <!-- Phone Number -->
@@ -19,7 +19,7 @@
                             <div>
                                 <span class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nomor Telepon</span>
                                 <a href="tel:+6281234567890" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400">
-                                    +62 812-3456-7890
+                                    {{ $profile->no_telp }}
                                 </a>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                             <div>
                                 <span class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</span>
                                 <a href="mailto:admin@kelurahanmawar.id" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400">
-                                    admin@kelurahanmawar.id
+                                    {{ $profile->email }}
                                 </a>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             <div>
                                 <span class="block text-sm font-medium text-gray-700 dark:text-gray-300">Alamat Kantor</span>
                                 <span class="text-gray-900 dark:text-gray-100">
-                                    Jl. Mawar Indah No. 123, Kelurahan Mawar, Kota Harmoni
+                                    {{ $profile->alamat_kantor }}
                                 </span>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <div>
                                 <span class="block text-sm font-medium text-gray-700 dark:text-gray-300">WhatsApp</span>
                                 <a href="https://wa.me/6281234567890" target="_blank" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400">
-                                    +62 812-3456-7890
+                                    {{ $profile->no_telp }}
                                 </a>
                             </div>
                         </div>

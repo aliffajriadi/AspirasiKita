@@ -84,12 +84,16 @@
                     </li>
 
                     <li>
+                        @php
+                            $isActive = request()->is('ceklapor') || request()->is('reports/track');
+                        @endphp
                         <a href="{{ url('/ceklapor') }}"
-                            class="block py-2 px-3 md:p-0 rounded 
-                            {{ request()->is('ceklapor') ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' }}"
-                            aria-current="{{ request()->is('ceklapor') ? 'page' : '' }}">
+                            class="block py-2 px-3 md:p-0 rounded
+    {{ $isActive ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' }}"
+                            aria-current="{{ $isActive ? 'page' : '' }}">
                             Lihat Laporan
                         </a>
+
                     </li>
 
                     <li>
@@ -109,7 +113,6 @@
     {{$slot}}
 
 
-
     <footer class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div class="md:flex md:justify-between">
@@ -119,7 +122,7 @@
                         <span
                             class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AspirasiKita</span>
                     </a>
-                    <p class="dark:text-white text-sm pt-2">Indonesia, Kepulauan Riau, Kota Batam, Kelurahan Mawar</p>
+                    <p class="dark:text-white text-sm pt-2">{{ $alamat }}</p>
 
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -127,21 +130,21 @@
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                         <ul class="text-gray-500 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                                <a href="/" class="hover:underline">Beranda</a>
                             </li>
                             <li>
-                                <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                                <a href="/kontak" class="hover:underline">Kontak Kami</a>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Lapor</h2>
                         <ul class="text-gray-500 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                                <a href="/laporan" class="hover:underline ">Lapor Keluhan dan saran</a>
                             </li>
                             <li>
-                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                                <a href="/" class="hover:underline">Cek Laporan</a>
                             </li>
                         </ul>
                     </div>
@@ -160,8 +163,8 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a
-                        href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="/"
+                        class="hover:underline">AspirasiKita™</a>. All Rights Reserved.
                 </span>
                 <div class="flex mt-4 sm:justify-center sm:mt-0">
                     <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
@@ -212,6 +215,7 @@
             </div>
         </div>
     </footer>
+    <x-toast />
 
     <script>
         const navbar = document.getElementById('navbar-landing');

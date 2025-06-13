@@ -1,10 +1,10 @@
-<x-LayoutAuth title="Laporan" nama="Admin" email="admin@gmail.com">
-    
+<x-LayoutAuth title="Laporan" :nama="$user->nama_kelurahan" :email="$user->email" :foto="$user->profile_pic">
     @php
         $status = [
-            'baru', 'pending', 'done'
+            'baru',
+            'pending',
+            'done'
         ]
-
     @endphp
 
     <div class="w-full">
@@ -46,6 +46,42 @@
                 <div class="p-6 border-b border-gray-200 dark:border-gray-700">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">Daftar Laporan</h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Lihat dan kelola semua laporan masyarakat</p>
+
+                    <!-- Filter Form -->
+                    <div class="mt-4">
+                        <form action="{{ url('/laporan') }}" method="GET" class="flex flex-col md:flex-row gap-4">
+                            <!-- Kolom Pencarian -->
+                            <div class="flex-1">
+                                <label for="search" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pencarian</label>
+                                <input type="text" id="search" name="search" value="{{ request('search') }}" placeholder="Cari kode, judul, atau isi laporan..." class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                            </div>
+                            <!-- Filter Kategori -->
+                            <div class="flex-1">
+                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
+                                <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                    <option value="">Semua Kategori</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <!-- Filter Status -->
+                            <div class="flex-1">
+                                <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                <select id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                    <option value="">Semua Status</option>
+                                    <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Baru</option>
+                                    <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Pending</option>
+                                    <option value="2" {{ request('status') === '2' ? 'selected' : '' }}>Done</option>
+                                </select>
+                            </div>
+                            <!-- Tombol Filter dan Reset -->
+                            <div class="flex items-end gap-2">
+                                <button type="submit" class="px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">Filter</button>
+                                <a href="{{ url('/laporan') }}" class="px-4 py-2.5 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-sm font-medium">Reset</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -63,73 +99,74 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                            @foreach ($reports as $index => $report)
+                            @forelse ($reports as $index => $report)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">{{ $index + 1 }}</td>
-                                    <td class="px-6 py-4">{{ $report['code'] }}</td>
+                                    <td class="px-6 py-4">{{ $report->code }}</td>
                                     <td class="px-6 py-4">{{ $report->category->name }}</td>
-                                    <td class="px-6 py-4">{{ $report['title'] }}</td>
-                                    <td class="px-6 py-4">{{ Str::limit($report['description'], 50) }}</td>
-                                    <td class="px-6 py-4">{{ $report['location'] }}</td>
-                                    <td class="px-6 py-4">{{ \Carbon\Carbon::parse($report['created_at'])->format('d M Y') }}</td>
+                                    <td class="px-6 py-4">{{ $report->title }}</td>
+                                    <td class="px-6 py-4">{{ Str::limit($report->description, 50) }}</td>
+                                    <td class="px-6 py-4">{{ $report->location }}</td>
+                                    <td class="px-6 py-4">{{ \Carbon\Carbon::parse($report->created_at)->format('d M Y') }}</td>
                                     <td class="px-6 py-4">
                                         <span class="px-2 py-1 text-xs font-medium rounded-full
-                                            {{ ($report['status'] == 1 ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' : ($report['status'] == 0 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300')) }}">
-                                            {{ $status[$report['status']] }}
+                                            {{ $report->status == 1 ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' : ($report->status == 0 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300') }}">
+                                            {{ $status[$report->status] }}
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 flex space-x-2">
-                                        <button data-modal-target="edit-modal-{{ $report['id'] }}" data-modal-toggle="edit-modal-{{ $report['id'] }}"
+                                        <button data-modal-target="edit-modal-{{ $report->id }}" data-modal-toggle="edit-modal-{{ $report->id }}"
                                                 class="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-xs font-medium">
                                             Edit
                                         </button>
-                                        <button data-modal-target="detail-modal-{{ $report['id'] }}" data-modal-toggle="detail-modal-{{ $report['id'] }}"
+                                        <button data-modal-target="detail-modal-{{ $report->id }}" data-modal-toggle="detail-modal-{{ $report->id }}"
                                                 class="px-3 py-1 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-xs font-medium">
                                             Detail
                                         </button>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">Tidak ada laporan ditemukan.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                    {{ $reports->links() }}
                 </div>
             </div>
 
             <!-- Edit Modals -->
             @foreach ($reports as $report)
-                <div id="edit-modal-{{ $report['id'] }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div id="edit-modal-{{ $report->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
-                        <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
                             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                    Edit Laporan: {{ $report['kode_laporan'] }}
+                                    Edit Laporan: {{ $report->code }}
                                 </h3>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="edit-modal-{{ $report['id'] }}">
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="edit-modal-{{ $report->id }}">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <!-- Modal body -->
                             <form action="/laporan/{{ $report->id }}" method="POST" class="p-4 md:p-5">
                                 @csrf
                                 @method('PATCH')
                                 <div class="grid gap-4 mb-4">
                                     <div>
-                                        <label for="status-{{ $report['id'] }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                        <select id="status-{{ $report['id'] }}" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                                            <option value="0" {{ $report['status'] == 0 ? 'selected' : '' }}>Baru</option>
-                                            <option value="1" {{ $report['status'] == 1 ? 'selected' : '' }}>Pending</option>
-                                            <option value="2" {{ $report['status'] == 2 ? 'selected' : '' }}>Done</option>
+                                        <label for="status-{{ $report->id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                        <select id="status-{{ $report->id }}" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                            <option value="0" {{ $report->status == 0 ? 'selected' : '' }}>Baru</option>
+                                            <option value="1" {{ $report->status == 1 ? 'selected' : '' }}>Pending</option>
+                                            <option value="2" {{ $report->status == 2 ? 'selected' : '' }}>Done</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label for="komentar-{{ $report['id'] }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Komentar</label>
-                                        <textarea id="komentar-{{ $report['id'] }}" name="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Tambahkan komentar...">{{ $report['komentar'] }}</textarea>
+                                        <label for="komentar-{{ $report->id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Komentar</label>
+                                        <textarea id="komentar-{{ $report->id }}" name="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Tambahkan komentar...">{{ $report->comment ?? '' }}</textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -144,28 +181,25 @@
 
             <!-- Detail Modals -->
             @foreach ($reports as $report)
-                <div id="detail-modal-{{ $report['id'] }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div id="detail-modal-{{ $report->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
-                        <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
                             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                    Detail Laporan: {{ $report['kode_laporan'] }}
+                                    Detail Laporan: {{ $report->code }}
                                 </h3>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="detail-modal-{{ $report['id'] }}">
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="detail-modal-{{ $report->id }}">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <!-- Modal body -->
                             <div class="p-4 md:p-5">
                                 <dl class="grid grid-cols-1 gap-4">
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Kode Laporan</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['kode_laporan'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report->code }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Kategori</dt>
@@ -173,27 +207,27 @@
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Judul Laporan</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['title'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report->title }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Isi Laporan</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['description'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report->description }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Lokasi</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['location'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report->location }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ \Carbon\Carbon::parse($report['created_at'])->format('d M Y') }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ \Carbon\Carbon::parse($report->created_at)->format('d M Y') }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Status</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['status'] }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $status[$report->status] }}</dd>
                                     </div>
                                     <div>
                                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Komentar</dt>
-                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report['comment'] ?? 'Belum ada komentar' }}</dd>
+                                        <dd class="text-sm text-gray-900 dark:text-white">{{ $report->comment ?? 'Belum ada komentar' }}</dd>
                                     </div>
                                 </dl>
                             </div>
