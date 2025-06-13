@@ -11,7 +11,7 @@
             <p class="text-lg font-normal text-gray-500 dark:text-gray-400 lg:text-xl">
                 AspirasiKita adalah platform pelaporan warga {{ $profile->nama_kelurahan }}. Laporkan keluhan, saran, atau permasalahan di lingkungan sekitar dengan mudah dan cepat.
             </p>
-            <a href=""
+            <a href="/lapor"
                class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-gradient-to-br from-purple-600 to-blue-500 rounded-lg hover:from-purple-700 hover:to-blue-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-200">
                 Lapor Sekarang
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="mt-12 text-center">
-                <a href=""
+                <a href="/lapor"
                    class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-200">
                     Mulai Melapor
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
