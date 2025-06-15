@@ -21,7 +21,7 @@
                         </label>
                         <input type="text" name="name" id="name"
                                class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm text-gray-900 dark:text-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               placeholder="Masukkan nama Anda" />
+                               placeholder="Masukkan nama Anda, atau anonim" />
                         @error('name')
                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
@@ -30,11 +30,11 @@
                     <!-- Contact Number (Optional) -->
                     <div>
                         <label for="phone_no" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Nomor Kontak (Opsional)
+                            Nomor Kontak/Wa (Opsional, akan kirim notif lewat whatsapp)
                         </label>
                         <input type="tel" name="phone_no" id="phone_no"
                                class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm text-gray-900 dark:text-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               placeholder="Contoh: 081234567890" />
+                               placeholder="wajib menggunakan 628, Contoh: 6281234567890" />
                         @error('phone')
                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
