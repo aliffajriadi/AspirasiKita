@@ -70,13 +70,16 @@ class ReportController extends Controller
         try {
             $field = $request->validate([
                 'name' => 'string',
-                'phone_no' => 'string',
+                'phone_no' => 'nullable|string',
                 'title' => 'required|string',
                 'location' => 'string',
                 'description' => 'required|string',
                 'files' => 'file',
                 'category_id' => 'required'
             ]);
+            if (isset($field['phone_no']) && substr($field['phone_no'], 0, 2) === '08') {
+                $field['phone_no'] = '628' . substr($field['phone_no'], 2);
+            }
 
             // Generate kode acak unik
             do {
