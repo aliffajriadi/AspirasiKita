@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\User;
 use App\Models\Report;
+use App\Models\Category;
 use App\Models\FileReport;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Foundation\Exceptions\ReportableHandler;
 
 class ReportController extends Controller
@@ -129,11 +130,19 @@ class ReportController extends Controller
 
             $report->update($field);
             // $report->save();
-
+            $nama_kelurahan = Auth::user()->nama_kelurahan;
+            if (substr($report->phone_no, 0, 3)) {
+                Http::post('https://api.aliffajriadi.my.id/botwa/api/kirim', [
+                    'pesan' => "👋 Hai *" . ($report->name ?? 'Pengguna') . "*!\n\nTerima kasih telah mengirimkan laporan ke *AspirasiKita*.\n\n📄 Laporan kamu dengan kode *" . $report->code . "* sudah ditanggapi oleh admin.\n\n🔍 Silakan cek statusnya melalui website resmi kami ya!\n\nSalam hangat,\nTim *AspirasiKita, " . $nama_kelurahan . "*",
+                    'nomor' => $report->phone_no
+                ]);
+            }
+            
             return redirect()->back()->with('success', 'Berhasil Update.');
 
-            dd($report, $request->all());
         } catch (\Exception $e) {
+            return redirect()->back()->with('erorr', 'Terjadi Kesalahan diserver.');
+
         }
     }
 }
