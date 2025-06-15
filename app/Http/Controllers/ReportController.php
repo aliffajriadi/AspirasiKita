@@ -136,7 +136,7 @@ class ReportController extends Controller
             $nama_kelurahan = Auth::user()->nama_kelurahan;
             if (substr($report->phone_no, 0, 3) == '628') {
                 Http::post('https://api.aliffajriadi.my.id/botwa/api/kirim', [
-                    'pesan' => "👋 Hai *" . ($report->name ?? 'Pengguna') . "*!\n\nTerima kasih telah mengirimkan laporan ke *AspirasiKita*.\n\n📄 Laporan kamu dengan kode *" . $report->code . "* sudah ditanggapi oleh admin.\n\n🔍 Silakan cek statusnya melalui website resmi kami ya!\n`http://127.0.0.1:8000/ceklapor`\n\nSalam hangat,\nTim *AspirasiKita, " . $nama_kelurahan . "*",
+                    'pesan' => "👋 Hai *" . ($report->name ?? 'Pengguna') . "*!\n\nTerima kasih telah mengirimkan laporan ke *AspirasiKita*.\n\n📄 Laporan kamu dengan kode *" . $report->code . "* sudah ditanggapi oleh admin.\n\n🔍 Silakan cek statusnya melalui website resmi kami ya!\n\nSalam hangat,\nTim *AspirasiKita, " . $nama_kelurahan . "*",
                     'nomor' => $report->phone_no
                 ]);
             }
