@@ -5,26 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>AspirasiKita</title>
+    <!-- Favicon default -->
+<link id="favicon" rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
 
-    <script>
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="dark:bg-gray-900">
     <nav id="navbar-landing"
-        class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700 transition-transform duration-500 ease-in-out">
+        class="fixed top-0 left-0 right-0 z-50 bg-white/50 backdrop-blur-sm border-b border-gray-200 dark:bg-gray-900/50 dark:border-gray-700 transition-transform duration-500 ease-in-out">
 
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="{{ asset('images/whitelogo.png') }}" class="h-8 md:h-12 hidden dark:block" alt="AspirasiKita" />
+                <img src="{{ asset('images/logo.png') }}" class="h-8 md:h-12 dark:hidden" alt="AspirasiKita" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AspirasiKita</span>
             </a>
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -35,7 +31,7 @@
 
 
                 {{-- Tombol Theme Toggle --}}
-                <button id="theme-toggle" type="button"
+                {{-- <button id="theme-toggle" type="button"
                     class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +44,7 @@
                             fill-rule="evenodd" clip-rule="evenodd"></path>
                     </svg>
                     <span class="sr-only">Toggle theme</span>
-                </button>
+                </button> --}}
 
                 <button data-collapse-toggle="navbar-cta" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -64,7 +60,7 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
                 {{-- Nav Links --}}
                 <ul
-                    class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-transparent dark:border-gray-700">
                     <li>
                         <a href="{{ url('/') }}"
                             class="block py-2 px-3 md:p-0 rounded 
@@ -117,8 +113,9 @@
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div class="md:flex md:justify-between">
                 <div class="mb-6 md:mb-0">
-                    <a href="https://flowbite.com/" class="flex items-center">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
+                    <a href="/" class="flex items-center">
+                        <img src="{{ asset('images/whitelogo.png') }}" class="h-12 hidden dark:block me-3" alt="AspirasiKita" />
+                <img src="{{ asset('images/logo.png') }}" class="h-12 dark:hidden me-3" alt="AspirasiKita" />
                         <span
                             class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AspirasiKita</span>
                     </a>
@@ -234,5 +231,29 @@
     </script>
 
 </body>
+<script>
+    const favicon = document.getElementById('favicon');
+
+    function setFaviconBasedOnMode() {
+        const isDark = document.documentElement.classList.contains('dark') || 
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        const lightIcon = "{{ asset('images/logo.png') }}";
+        const darkIcon = "{{ asset('images/whitelogo.png') }}";
+
+        favicon.href = isDark ? darkIcon : lightIcon;
+    }
+
+    // Jalankan saat page load
+    setFaviconBasedOnMode();
+
+    // Deteksi perubahan preferensi sistem (opsional)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFaviconBasedOnMode);
+
+    // Atur ulang favicon saat toggle dark mode manual (jika ada tombol toggle)
+    const observer = new MutationObserver(setFaviconBasedOnMode);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+</script>
+
 
 </html>

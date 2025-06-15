@@ -122,7 +122,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($unfinished_reports as $report)
+                            @forelse ($unfinished_reports as $report)
                             
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $report->code }}</td>
@@ -152,8 +152,13 @@
                 
                                 
                             </tr>
-
-                            @endforeach
+                            @empty
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td colspan="6" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                                    Tidak ada laporan
+                                </td>
+                            </tr>
+                            @endforelse
                         
                         </tbody>
                     </table>

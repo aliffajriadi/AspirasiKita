@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$title}}</title>
+    <link id="favicon" rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -14,7 +17,8 @@
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl px-5 flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                <img src="{{ asset('images/whitelogo.png') }}" class="h-8 md:h-12 hidden dark:block" alt="AspirasiKita" />
+                <img src="{{ asset('images/logo.png') }}" class="h-8 md:h-12 dark:hidden" alt="AspirasiKita" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AspirasiKita</span>
             </a>
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -23,8 +27,8 @@
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                     data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
-                    
-                    <img class="w-8 h-8 rounded-full" src="{{asset('storage/' . $foto )}}" alt=" user">
+
+                    <img class="w-8 h-8 rounded-full" src="{{asset('storage/' . $foto)}}" alt=" user">
                 </button>
                 <!-- Dropdown menu -->
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
@@ -106,5 +110,29 @@
     </section>
     <x-toast />
 </body>
+<script>
+    const favicon = document.getElementById('favicon');
+
+    function setFaviconBasedOnMode() {
+        const isDark = document.documentElement.classList.contains('dark') ||
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        const lightIcon = "{{ asset('images/logo.png') }}";
+        const darkIcon = "{{ asset('images/whitelogo.png') }}";
+
+        favicon.href = isDark ? darkIcon : lightIcon;
+    }
+
+    // Jalankan saat page load
+    setFaviconBasedOnMode();
+
+    // Deteksi perubahan preferensi sistem (opsional)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFaviconBasedOnMode);
+
+    // Atur ulang favicon saat toggle dark mode manual (jika ada tombol toggle)
+    const observer = new MutationObserver(setFaviconBasedOnMode);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+</script>
+
 
 </html>
