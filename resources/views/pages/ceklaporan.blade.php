@@ -15,7 +15,7 @@
                         </label>
                         <input type="text" name="report_code" id="report_code" required
                             class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm text-gray-900 dark:text-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Masukkan kode laporan (contoh: RPT-20250608-ABC)" title="Kode laporan hanya boleh berisi huruf besar, angka, dan tanda hubung" />
+                            placeholder="Masukkan kode laporan (contoh: Lap-3XAMPLE)" title="Kode laporan hanya boleh berisi huruf besar, angka, dan tanda hubung" />
                         @error('report_code')
                             <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
